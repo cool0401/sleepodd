@@ -1,0 +1,42 @@
+﻿@inherits LayoutComponentBase
+@using Podcast.Pages.Pages
+@inject HttpInterceptorService Interceptor
+
+@if (IsUserSignedIn)
+{
+    <div class="page">
+        <div class="page__header page__navbar">
+            <Header />
+        </div>
+
+        <div class="page__sidebar page__navbar">
+            <NavMenu />
+        </div>
+
+        <main>
+            <article>
+                @Body
+            </article>
+        </main>
+        <PlayerBar />
+        <Audio />
+    </div>
+}
+else
+{
+    <div class="page">
+        <div class="page__header">
+            <Header />
+        </div>
+
+        <main>
+            <article>
+                <SigninPage />
+            </article>
+        </main>
+    </div>
+}
+
+@code {
+    private bool IsUserSignedIn = true;
+}

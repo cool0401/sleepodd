@@ -1,0 +1,24 @@
+﻿<div class="cancelsusbscriptionModal">
+    <p class="cancelsusbscriptionModal__info">
+        Are you sure to cancel this subscription.
+    </p>
+    <h3 class="cancelsusbscriptionModal__title">You will be lost your membership?</h3>
+    <div class="cancelsusbscriptionModal__buttons">
+        <button type="button" @onclick="HandleCancelSubmit" class="buttonApp primary" title="Cancel Subscription">
+            <span>Ok</span>
+        </button>
+        <button type="button" @onclick="HandleCloseSubmit" class="buttonApp primary" title="Cancel Subscription">
+            <span>Cancel</span>
+        </button>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback<bool> OnCancelSubscription { get; set; }
+
+    private Task HandleCancelSubmit() => OnCancelSubscription.InvokeAsync(true);
+
+    private Task HandleCloseSubmit() => OnCancelSubscription.InvokeAsync(false);
+}

@@ -1,0 +1,41 @@
+﻿@inject IPodcastService PodcastService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<ul class="account-menu">
+    <AuthorizeView>
+        <Authorized>
+            <div id="account-dropdown" class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My pages
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-item"><a href="/account">Account</a></li>
+                    <li class="dropdown-item"><a href="/my-podcast">My Podcasts</a></li>
+                    <li class="dropdown-item"><a href="/subscribe">Subscription</a></li>
+                    <li class="dropdown-item"><a href="/billing-history">Billing History</a></li>
+                    <li class="dropdown-item"><a href="/listening-history">My Listening Histroy</a></li>
+                    <li class="dropdown-item"><a href="/terms-and-conditions">Terms and Conditions</a></li>
+                    <li class="dropdown-item"><a href="/" @onclick="SignOut">Logout</a></li>
+                </div>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <li>
+                <a href="/signin" title="Sign In" class="menu-button">Sign In</a>
+            </li>
+        </NotAuthorized>
+    </AuthorizeView>
+</ul>
+
+@code {
+    
+    protected override void OnInitialized()
+    {
+        
+    }
+
+    private async Task SignOut()
+    {
+        await PodcastService.UserSignOut();
+    }
+}

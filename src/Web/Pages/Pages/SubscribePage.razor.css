@@ -1,0 +1,153 @@
+﻿.subscription-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    width: 100%;
+    background-color: var(--c-neutral-grey1);
+}
+
+.subscription-card {
+    background: #000;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 18px 0 rgba(0,0,0,.35);
+    box-shadow: 0 0 18px 0 rgba(0,0,0,.35);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 45px 30px;
+    background-color: var(--c-neutral-white-complementary);
+    position: relative;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center
+}
+
+.subscription-content .sidebar-image {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.subscription-content .sidebar-image-path {
+    fill: var(--c-neutral-white-complementary);
+}
+
+.pricing-content {
+}
+
+.single-pricing {
+    background-color: var(--c-neutral-white-complementary);
+    padding: 40px 20px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 2;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 40px -10px rgba(0, 64, 128, .09);
+    transition: 0.3s;
+}
+
+@media only screen and (max-width:480px) {
+    .single-pricing {
+        margin-bottom: 30px;
+    }
+}
+
+.single-pricing:hover {
+    box-shadow: 0px 60px 60px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transform: translate(0, -10px);
+}
+
+.price-label {
+    background: #ffaa17;
+    font-size: 16px;
+    width: 100px;
+    margin-bottom: 15px;
+    display: block;
+    -webkit-clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+    clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+    margin-left: -20px;
+    position: absolute;
+}
+
+.plan-label {
+    background: #d70000;
+    font-size: 16px;
+    width: 135px;
+    margin-bottom: 15px;
+    display: block;
+    -webkit-clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+    clip-path: polygon(100% 0%, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+    margin-left: -20px;
+    position: absolute;
+}
+
+.price-head h2 {
+    font-weight: 600;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+    font-size: 26px;
+}
+
+.price-head span {
+    display: inline-block;
+    background: #ffaa17;
+    width: 6px;
+    height: 6px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.price {
+    font-weight: 500;
+    font-size: 50px;
+    margin-bottom: 0px;
+}
+
+.single-pricing {
+}
+
+.single-pricing h5 {
+    font-size: 14px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+
+.single-pricing ul {
+    list-style: none;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.single-pricing ul li {
+    line-height: 35px;
+}
+
+.single-pricing .subscription-button {
+    background: none;
+    border: 2px solid #ffaa17;
+    border-radius: 5000px;
+    color: #ffaa17;
+    display: inline-block;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 10px 45px;
+    text-transform: capitalize;
+    transition: all 0.3s ease 0s;
+}
+
+.single-pricing .subscription-button:hover,
+.single-pricing .subscription-button:focus {
+    background: #ffaa17;
+    color: #fff;
+    border: 2px solid #ffaa17;
+}
+
+.single-pricing-white {
+    background-color: var(--c-neutral-white-complementary);
+}

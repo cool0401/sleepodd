@@ -1,0 +1,70 @@
+﻿@page "/subscribe/success"
+@attribute [Authorize]
+@implements IDisposable
+@inject IPodcastService PodcastService
+@inject IJSRuntime jsRuntime
+@inject NavigationManager NavigationManager
+
+<PageTitle>.AISleepod - Subscription Success</PageTitle>
+
+<div class="container">
+	<div class="row">
+		<h3 class="col-12 mt-4 text-center">@message</h3>
+	</div>
+</div>
+
+@code {
+
+	public string? sessionId { get; set; }
+
+	private string? message;
+
+	protected async override void OnInitialized()
+	{
+		var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+		if (Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query).TryGetValue("session_id", out var sessionIdValue))
+		{
+			sessionId = sessionIdValue;
+			if (!String.IsNullOrEmpty(sessionIdValue)) {
+				message = "Your payment is successful!";
+			}
+			else
+			{
+				message = "Sorry. There is a error, Please try again.";
+			}
+		}
+		else
+		{
+			message = "Sorry. There is a error, Please try again.";
+		}
+
+		StateHasChanged();
+
+		await Task.Delay(3000);
+		NavigationManager.NavigateTo("/subscribe");
+	}
+
+	private async Task CheckoutHandler(string subscription)
+	{
+		var (result, message) = await PodcastService.Checkout(subscription);
+
+		if (result)
+			await jsRuntime.InvokeVoidAsync("redirectToCheckout", message);
+		else
+			this.message = message;
+	}
+
+	[JSInvokable]
+	public async Task HandleCheckoutError(string error)
+	{
+		message = error;
+		StateHasChanged();
+		await Task.Delay(3000);
+		NavigationManager.NavigateTo("/subscribe");
+	}
+
+	public void Dispose()
+	{
+
+	}
+}

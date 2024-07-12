@@ -1,0 +1,65 @@
+﻿@page "/account/confirmemail"
+@implements IDisposable
+@inject IPodcastService PodcastService
+@inject NavigationManager NavigationManager
+
+<PageTitle>AISleepod - Confirm Email</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <h3 class="col-12 mt-4 text-center">@message</h3>
+        @*<div class="col-12 mt-4 d-flex justify-content-center">
+            <button class="buttonApp" @onclick=SendConfirmEmailLink>Resend Email Confirm Link</button>
+        </div>*@
+    </div>
+</div>
+
+@code {
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+
+        if (query.ContainsKey("UserId") && query.ContainsKey("Token"))
+        {
+            var userId = query["UserId"];
+            var token = query["Token"];
+
+            if (!String.IsNullOrEmpty(userId) && !String.IsNullOrEmpty(token))
+            {
+                var (result, error) = await PodcastService.ConfirmEmail(userId, token);
+
+                if (result)
+                {
+                    message = "Email confirmation successful.";
+                    StateHasChanged();
+                    await Task.Delay(3000);
+
+                    NavigationManager.NavigateTo("/signin");
+                }
+                else
+                {
+                    message = "Email confirmation failed.";
+                    StateHasChanged();
+                }
+            }
+            else
+            {
+                message = "Invalid link";
+                StateHasChanged();
+            }
+        }
+    }
+
+    public void SendConfirmEmailLink()
+    {
+        
+    }
+
+    public void Dispose()
+    {
+
+    }
+}

@@ -1,0 +1,97 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.4"
+services:
+  listentogether.hub:
+    build:
+      context: "/root/sleepodd"
+      dockerfile: "src/Services/ListenTogether/ListenTogether.Hub/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/ListenTogether.Hub.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "listentogetherhub:dev"
+    ports: []
+    volumes:
+    - "/root/.nuget/packages:/root/.nuget/packages"
+    - "/root/sleepodd/src/Services/ListenTogether/ListenTogether.Hub:/app:rw"
+    - "/root/sleepodd:/src:rw"
+    working_dir: "/app"
+  podcast.api:
+    build:
+      context: "/root/sleepodd"
+      dockerfile: "src/Services/Podcasts/Podcast.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/Podcast.API.dll"
+    environment:
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net7.0/Podcast.API.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "podcastminapi:dev"
+    ports: []
+    volumes:
+    - "/root/.nuget/packages:/root/.nuget/packages"
+    - "/root/sleepodd/src/Services/Podcasts/Podcast.API:/app:rw"
+    - "/root/sleepodd:/src:rw"
+    working_dir: "/app"
+  podcast.ingestion.worker:
+    build:
+      context: "/root/sleepodd"
+      dockerfile: "src/Services/Podcasts/Podcast.Ingestion.Worker/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/Podcast.Ingestion.Worker.dll"
+    environment:
+      DOTNET_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "podcastingestionworker:dev"
+    ports: []
+    volumes:
+    - "/root/.nuget/packages:/root/.nuget/packages"
+    - "/root/sleepodd/src/Services/Podcasts/Podcast.Ingestion.Worker:/app:rw"
+    - "/root/sleepodd:/src:rw"
+    working_dir: "/app"
+  podcast.updater.worker:
+    build:
+      context: "/root/sleepodd"
+      dockerfile: "src/Services/Podcasts/Podcast.Updater.Worker/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/Podcast.Updater.Worker.dll"
+    environment:
+      DOTNET_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "podcastupdaterworker:dev"
+    ports: []
+    volumes:
+    - "/root/.nuget/packages:/root/.nuget/packages"
+    - "/root/sleepodd/src/Services/Podcasts/Podcast.Updater.Worker:/app:rw"
+    - "/root/sleepodd:/src:rw"
+    working_dir: "/app"
+  podcast.web:
+    build:
+      context: "/root/sleepodd"
+      dockerfile: "src/Web/Server/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/Podcast.Server.dll"
+    environment:
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net7.0/Podcast.Server.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "podcastweb:dev"
+    ports: []
+    volumes:
+    - "/root/.nuget/packages:/root/.nuget/packages"
+    - "/root/sleepodd/src/Web/Server:/app:rw"
+    - "/root/sleepodd:/src:rw"
+    working_dir: "/app"

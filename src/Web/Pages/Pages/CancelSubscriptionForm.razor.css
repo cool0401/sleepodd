@@ -1,0 +1,28 @@
+﻿.cancelsusbscriptionModal {
+}
+
+.cancelsusbscriptionModal__info {
+    font-family: var(--ff-regular);
+    font-size: var(--text-m-fs);
+    line-height: var(--text-m-lh);
+    margin-bottom: 32px;
+}
+
+.cancelsusbscriptionModal__title {
+    font-family: var(--ff-semibold);
+    font-size: var(--subheadings-s6-fs);
+    line-height: var(--subheadings-s6-lh);
+    margin-bottom: 12px;
+}
+
+.cancelsusbscriptionModal__buttons {
+    display: flex;
+    gap: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .cancelsusbscriptionModal {
+        overflow-y: auto;
+        padding: 0 12px 0 0;
+    }
+}

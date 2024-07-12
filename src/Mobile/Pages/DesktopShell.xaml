@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:Microsoft.NetConf2021.Maui.Pages"
+       FlyoutBehavior="Locked"
+       xmlns:root="clr-namespace:Microsoft.NetConf2021.Maui"
+       xmlns:viewmodels="clr-namespace:Microsoft.NetConf2021.Maui.ViewModels"
+       x:DataType="viewmodels:ShellViewModel"
+       x:Class="Microsoft.NetConf2021.Maui.Pages.DesktopShell">
+
+    <Shell.FlyoutHeader>
+        <Grid>
+            <Image Source="{AppThemeBinding Dark=logo_color_horizontal_darkmode.png,Light=logo_header_horizontal.png}"
+                   SemanticProperties.Description=".NET Podcast application logo"
+                   HeightRequest="142"
+                   VerticalOptions="Center"
+                   WidthRequest="230"
+                   HorizontalOptions="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="{Binding Discover.Title}"
+                Icon="{AppThemeBinding Light=discover.png, Dark=discover_dark.png}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:DiscoverPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{Binding Subscriptions.Title}"
+                Icon="{AppThemeBinding Light=subscriptions.png, Dark=subscriptions_dark.png}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:SubscriptionsPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{Binding ListenLater.Title}"
+                Icon="{AppThemeBinding Light=clock.png, Dark=clock_dark.png}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:ListenLaterPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{Binding ListenTogether.Title}"
+                Icon="{AppThemeBinding Light=listentogether.png, Dark=listentogether_dark.png}"
+                FlyoutItemIsVisible="{x:Static root:Config.ListenTogetherIsVisible}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:ListenTogetherPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{Binding Settings.Title}"
+                Icon="{AppThemeBinding Light=settings.png, Dark=settings_dark.png}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <StackLayout Orientation="Horizontal">
+                <Image Margin="6,10" WidthRequest="18" HeightRequest="18" Source="{Binding Icon}"/>
+                <Label Margin="6,10" Text="{Binding Title}"/>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+</Shell>

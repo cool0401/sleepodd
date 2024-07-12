@@ -1,0 +1,14 @@
+﻿.account-menu {
+    align-items: center;
+    display: grid;
+    font-size: var(--text-l-fs);
+    gap: 58px;
+    grid-auto-flow: column;
+    line-height: var(--text-l-lh);
+}
+
+.account-menu a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}

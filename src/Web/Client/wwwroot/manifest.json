@@ -1,0 +1,32 @@
+{
+  "name": "AISleepod",
+  "description": "Discover the app that lets you listen to your favorite podcasts when you go to sleep, from any device, with hundreds of topics including True Crime, History, Science, Meditation, Motivation, Passion and much more.",
+  "start_url": "/discover",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#c00cc0",
+  "background_color": "#faf9f8",
+  "icons": [
+    {
+      "src": "images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
